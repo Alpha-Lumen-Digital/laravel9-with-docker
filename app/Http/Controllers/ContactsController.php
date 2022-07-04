@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreContactRequest;
 use App\Models\Contact;
 
 class ContactsController extends Controller
@@ -22,6 +23,28 @@ class ContactsController extends Controller
                 'message' => 'Contact does not exists'
             ], 404);
         }
+
+        return response()->json($contact);
+    }
+
+    public function store(StoreContactRequest $request) {
+        $contactAlreadyExists = Contact::where('email', $request->email)->first();
+
+        if($contactAlreadyExists) {
+            return response()->json([
+                'message' => 'Contact already exists!'
+            ], 404);
+        }
+
+        // $contact = new Contact();
+        // $contact->name = $request->name;
+        // $contact->email = $request->email;
+        // $contact->save();
+
+        $contact = Contact::create([
+            'name' => $request->name,
+            'email' => $request->email
+        ]);
 
         return response()->json($contact);
     }
