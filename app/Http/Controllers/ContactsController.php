@@ -69,4 +69,20 @@ class ContactsController extends Controller
 
         return $contact;
     }
+
+    public function destroy($id) {
+        $contact = Contact::find($id);
+
+        if(!$contact) {
+            return response()->json([
+                'message' => 'Contact not found.'
+            ], 404);
+        }
+
+        $contact->delete();
+
+        return response()->json([
+            'message' => 'Contact removed successfully.'
+        ], 200);
+    }
 }
