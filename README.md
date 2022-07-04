@@ -28,7 +28,7 @@ Acesse **http://localhost:8000**. Deve ser exibida a página inicial do Laravel.
 ## Dicas para o desenvolvimento
 Sempre utilize o terminal do container para realizar comandos **Artisan** por exemplo. O teminal pode ser acessado com o comando abaixo e digite **exit** para sair.
 ```powershell
-docker exec -it l9wd-app /bin/powershell
+docker exec -it l9wd-app /bin/bash
 ```
 Para visualizar os logs utilize o seguinte comando fora do container. (CTRL+C para sair)
 ```powershell
