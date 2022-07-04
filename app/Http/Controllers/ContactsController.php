@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PutContactRequest;
 use App\Http\Requests\StoreContactRequest;
 use App\Models\Contact;
 
@@ -47,5 +48,25 @@ class ContactsController extends Controller
         ]);
 
         return response()->json($contact);
+    }
+
+    public function update($id, PutContactRequest $request) {
+        $contact = Contact::find($id);
+
+        if(!$contact) {
+            return response()->json([
+                'message' => 'Contact not found.'
+            ], 404);
+        }
+
+        $contact->name = $request->name;
+        $contact->email = $request->email;
+        $contact->save();
+
+        // mass updates
+        // Contact::where('name', $request->name)
+        //     ->update(['email' => $request->email]);
+
+        return $contact;
     }
 }

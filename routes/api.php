@@ -17,3 +17,4 @@ use Illuminate\Support\Facades\Route;
 Route::get('/contacts', [ContactsController::class, 'index']);
 Route::get('/contacts/{id}', [ContactsController::class, 'show']);
 Route::post('/contacts', [ContactsController::class, 'store']);
+Route::put('/contacts/{id}', [ContactsController::class, 'update']);
